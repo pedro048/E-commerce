@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous"
+        >
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Ubuntu&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+        
+        <!-- Font Awesome JavaScript-->
+        <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+        <title>E-commerce</title>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/imagens/fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/imagens/fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/imagens/fav/favicon-16x16.png">
+        <link rel="shortcut icon" href="Images/favicon.ico" type="Images/x-icon">
+        <link rel="manifest" href="/imagens/fav/site.webmanifest">
+        <link rel="mask-icon" href="/imagens/fav/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/imagens/fav/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="/imagens/fav/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+        <style>
+            body {
+              background-color: #F1EAFF;
+              font-family: "Montserrat";
+            }
+
+            #carouselMain {
+              margin-top:60px;
+              margin-bottom:90px;
+            }
+
+            .imgResize {
+              width: 30%;
+              margin-bottom:30px;
+            }
+
+            .products {
+              margin-top:60px;  
+            }
+
+/**
+ * EasyZoom core styles
+ 
+            .easyzoom {
+	            position: relative;
+
+	
+	            display: inline-block;
+	            *display: inline;
+	            *zoom: 1;
+            }
+*/
+            .easyzoom img {
+	            vertical-align: bottom;
+            }
+
+            .easyzoom.is-loading img {
+	            cursor: progress;
+            }
+
+            .easyzoom.is-ready img {
+	            cursor: grab;
+            }
+
+            .easyzoom.is-error  img {
+	            cursor: not-allowed;
+            }
+
+            .easyzoom-notice {
+	            position: absolute;
+	            top: 50%;
+	            left: 50%;
+	            z-index: 150;
+	            width: 10em;
+	            margin: -1em 0 0 -5em;
+	            line-height: 2em;
+	            text-align: center;
+	            background: #FFF;
+	            box-shadow: 0 0 10px #888;
+            }
+
+            .easyzoom-flyout {
+	            position:absolute;
+	            z-index: 100;
+	            overflow: hidden;
+	            background: #FFF;
+            }
+
+/**
+ * EasyZoom layout variations
+ */
+            .easyzoom--overlay .easyzoom-flyout {
+	            top: 0;
+	            left: 0;
+	            width: 100%;
+	            height: 100%;
+            }
+
+            .easyzoom--adjacent .easyzoom-flyout {
+	            top: 0;
+	            left: 100%;
+	            width: 100%;
+	            height: 100%;
+	            margin-left: 20px;
+            }
+        </style>
+    </head>
+
+    <body style="min-width: 372px">
+        <div class="d-flex flex-column wrapper">
+            
+            <%- include('navbar') %>
+
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
+                <div class="offcanvas-header text-center">
+                  <h5 class="offcanvas-title" id="sidebarLabel">Buy by category</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <div>
+                    Choose here the product category.
+                  </div>
+                  <div class="dropdown mt-3">
+                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                      Clothing & Accessories
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/camisas.html">Camisas</a></li>
+                      <li><a class="dropdown-item" href="/casacos.html">Casacos e Suéters</a></li>
+                      <li><a class="dropdown-item" href="/crochê.html">Crochê</a></li>
+                      <li><a class="dropdown-item" href="/jeans.html">Jeans</a></li>
+                      <li><a class="dropdown-item" href="/sandalias.html">Sandálias, Saltos e Tênis</a></li>
+                    </ul>
+                  </div>
+                  
+                  <div class="dropdown mt-3">
+                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                      Home appliances
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Geladeira</a></li>
+                      <li><a class="dropdown-item" href="#">TVs</a></li>
+                      <li><a class="dropdown-item" href="#">Produtos eletrônicos</a></li>
+                      <li><a class="dropdown-item" href="#">Câmeras</a></li>
+                    </ul>
+                  </div>
+
+                  <div class="dropdown mt-3">
+                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                      Books
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Ação</a></li>
+                      <li><a class="dropdown-item" href="#">Aventura</a></li>
+                      <li><a class="dropdown-item" href="#">Ficção científica</a></li>
+                      <li><a class="dropdown-item" href="#">Terror</a></li>
+                      <li><a class="dropdown-item" href="#">Sandálias, Saltos e Tênis</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+            </div>
+
+                <br>
+
+                <hr class="mt-2"/>
+                <div class="container">
+                    <div class="text-center">
+                        <h1>Welcome to the E-commerce</h1>
+                        <h5>Explore top-quality products, fast shipping, and outstanding service! </h5>
+                    </div>
+                </div>
+                <hr class="mt-2"/>
+            
+            <main class="flex-fill">
+                <div class="container text-center products">
+                    <h2>Highlighted Products</h2>
+                    <br>
+
+                    <ul class="justify-content-center">
+                        <div class="row">
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/basica1_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 26,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>White T-shirt</b></h6>
+                                <p class="card-text"> Comfortable T-shirt made of cotton.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/camisabasica.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">75 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+                  
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/algodao1_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 38,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Gray cotton coat</b></h6>
+                                <p class="card-text"> Waterproof coat responsible of cut the wind and decrease the cold feeling.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/casacoalgodao1.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">87 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+                          
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/casaco_front.jpg" class="card-img-top" >
+                              <div class="card-header">
+                                $ 83,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Gray snow coat</b></h6>
+                                <p class="card-text"> Coat for winter protection.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/casacoalgodao2.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">140 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+                  
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/croche1_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 50,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Pink crochet sweater</b></h6>
+                                <p class="card-text"> Comfortable crochet sweater.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/casacocroche1.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">97 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/croche2_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 45,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Green crochet sweater</b></h6>
+                                <p class="card-text"> Comfortable crochet sweater.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/casacocroche2.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">63 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+                
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/croche3_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 60,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Orange crochet blouse</b></h6>
+                                <p class="card-text"> Comfortable crochet sweater.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/casacocroche3.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">223 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/croche4_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 55,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Orange crochet sweater</b></h6>
+                                <p class="card-text"> Comfortable crochet sweater.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/casacocroche4.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">195 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+                  
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/jeans1_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 74,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Jeans Jacket and pants</b></h6>
+                                <p class="card-text"> Set of jeans clothes.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/roupajeans.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">42 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light" >
+                              <img src="/Images/salto_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                R$ 54,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Blue high heels</b></h6>
+                                <p class="card-text"> High heels made of synthetic snake skin.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/salto.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">74 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+                  
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/sandalia1_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 18,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Yellow pair of flip flop</b></h6>
+                                <p class="card-text"> Comfortable flip flops.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/sandalia_amarela.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">36 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+                          <!--
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/sandalia2.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 18,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Pink pair of flip flop</b></h6>
+                                <p class="card-text"> Comfortable flip flops.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/sandalia_rosa.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">85 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+                          -->
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/sueter1_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 26,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Cotton sweater</b></h6>
+                                <p class="card-text"> Comfortable cotton sweater.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/sueter1.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">68 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/sueter2_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 48,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Brown crochet sweater</b></h6>
+                                <p class="card-text"> Comfortable crochet sweater.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/sueter2.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">177 remaining units</small>
+                                
+                              </div>
+                            </div>
+                          </div> <br>
+                  
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/sueter3_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 42,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Blue crochet sweater</b></h6>
+                                <p class="card-text"> Comfortable crochet sweater.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/sueter3.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">64 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+
+                          <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                            <div class="card text-center bg-light">
+                              <img src="/Images/tenis_front.jpg" class="card-img-top">
+                              <div class="card-header">
+                                $ 34,00
+                              </div>
+                              <div class="card-body">
+                                <h6 class="card-title"><b>Running shoes</b></h6>
+                                <p class="card-text"> Comfortable running shoes.</p>
+                              </div>
+                              <div class="card-footer">
+                                <form>
+                                  <button class="btn btn-info">
+                                    <a href="/views/tenis.ejs" class="nav-link text-dark">See more</a>
+                                  </button>
+                                </form>
+                                <small class="text-sucess">268 remaining units</small>
+                  
+                              </div>
+                            </div>
+                          </div> <br>
+
+                          <!--<div class="row">-->
+                            <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch imgResize">
+                              <div class="card text-center bg-light">
+                                <img src="/Images/polo1_front.jpg" class="card-img-top">
+                                <div class="card-header">
+                                  $ 28,00
+                                </div>
+                                <div class="card-body">
+                                  <h6 class="card-title"><b>Polo shirt</b></h6>
+                                  <p class="card-text"> Kind of sport clothes.</p>
+                                </div>
+                                <div class="card-footer">
+                                  <form>
+                                    <button class="btn btn-info">
+                                      <a href="/views/camisapolo.ejs" class="nav-link text-dark">See more</a>
+                                    </button>
+                                  </form>
+                                  <small class="text-sucess">59 remaining units</small>
+                    
+                                </div>
+                              </div>
+                            </div> <br>
+                            
+                          
+            </main>
+            
+            <%- include('footer') %>
+        </div>
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            document.getElementById('loginButton').addEventListener('click', function() {
+              window.location.href = '/views/login.ejs';
+            });
+            
+            document.getElementById('registryButton').addEventListener('click', function() {
+              window.location.href = '/views/registration.ejs';
+            });
+
+            document.getElementById('aboutWebPage').addEventListener('click', function() {
+              window.location.href = '/views/about.ejs';
+            });
+        </script>
+
+    </body>
+</html>
