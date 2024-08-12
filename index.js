@@ -7,16 +7,10 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-/*
-const uriRead = process.env.MONGODB_URI_READ;
 
-const uriWrite = process.env.MONGODB_URI_WRITE;
+const uriReadWrite = process.env.MONGODB_URI_READ_WRITE;
 
-const conn1 = mongoose.createConnection(uriRead, {useNewUrlParser: true});
-*/
-
-const conn1 = mongoose.createConnection("mongodb+srv://pedroandrade046:Calmapedro2046@cluster0.z39fm.mongodb.net/usersDataDB", {useNewUrlParser: true});
-
+const conn1 = mongoose.createConnection(uriReadWrite, {useNewUrlParser: true});
 
 //--------------------------------------------------------------------------------------------
 
